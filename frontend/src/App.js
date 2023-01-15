@@ -7,20 +7,19 @@ import requests from './Request';
 function App() {
   axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL
 
-  const [test, setTest] = useState('test');
+  const [test, setTest] = useState();
 
   useEffect(() => {
     const getTrendMovie = async () => {
       const response = await axios.get(requests.helloWorld);
-      setTest(response.data.results)
+      setTest(response.data);
     }
     getTrendMovie();
   }, [])
 
   return (
     <div className="App">
-      tsuyoshi<br/>
-      {console.log(test.text)}
+      {test.text}
     </div>
   );
 }
