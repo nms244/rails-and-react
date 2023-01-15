@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     const getTrendMovie = async () => {
-      const response = await axios.get(requests.root);
+      const response = await axios.get(requests.helloWorld);
       setTest(response.data.results)
     }
     getTrendMovie();
@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       tsuyoshi<br/>
-      {console.log(test)}
+      {console.log(test.text)}
     </div>
   );
 }
