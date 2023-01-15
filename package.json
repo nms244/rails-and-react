@@ -4,7 +4,7 @@
   "description": "You can manage tasks using this application.",
   "main": "index.js",
   "scripts": {
-    "build": "cd frontend && npm install && npm run build && cd ..",
+    "build": "cd frontend && npm install && npm run build && cd .. && echo 'npm install!'",
     "deploy": "cp -a frontend/build/. public/",
     "heroku-postbuild": "npm run build && npm run deploy && echo 'Client built!'"
   },
