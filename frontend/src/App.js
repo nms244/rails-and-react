@@ -7,7 +7,7 @@ import requests from './Request';
 function App() {
   axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL
 
-  const [test, setTest] = useState();
+  const [test, setTest] = useState('');
 
   useEffect(() => {
     const getTrendMovie = async () => {
