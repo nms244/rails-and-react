@@ -12,6 +12,7 @@ function App() {
   useEffect(() => {
     const getTrendMovie = async () => {
       const response = await axios.get(requests.helloWorld);
+      console.log(response.data);
       setTest(response.data);
     }
     getTrendMovie();
