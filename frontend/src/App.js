@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     const getTrendMovie = async () => {
-      const response = await axios.get(requests.usersShow+'1');
+      const response = await axios.get(requests.tasks);
       console.log(response.data);
       setTest(response.data);
     }
