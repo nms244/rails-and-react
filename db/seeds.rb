@@ -17,4 +17,31 @@ User.create!(
   email: "raima@example.com",
 )
 
-
+# Task
+10.times do |num|
+  if num == 5
+    Task.create!(
+      name: "タスクNo.#{num}",
+      goal: 2000,
+      done: 1200,
+      user_id: 2,
+    )
+  elsif num == 7
+    Task.create!(
+      name: "タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}タスクNo.#{num}",
+      description: "タスク#{num} タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明タスクの詳細説明",
+      goal: 2000,
+      unit: '単語',
+      user_id: 1
+    )
+  else
+    Task.create!(
+      name: "タスクNo.#{num}",
+      description: "タスク#{num} タスクの詳細説明",
+      goal: 2000,
+      done: 1200,
+      unit: '単語',
+      user_id: 1
+    )
+  end
+end
