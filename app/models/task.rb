@@ -1,4 +1,12 @@
 class Task < ApplicationRecord
+  with_options presence: true do
+    validates :name, length: { maximum: 32 }
+    validates :goal, numericality: { only_integer: true }
+    validates :done, numericality: { only_integer: true }
+    validates :user_id
+  end
+  validates :description, length: { maximum: 256 }
+
   belongs_to :user
   has_many :arrangements
 
