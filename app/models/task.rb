@@ -17,8 +17,9 @@ class Task < ApplicationRecord
     target_tasks = user.present? ? user.tasks : Task.all
     target_tasks.find_each do |task|
       done_sum = task.arrangements.sum(:done_per_day)
-      task.update_attributes(done: done_sum)
+      task.update!(done: done_sum)
     end
+    true
   end
 
   # あるtaskに対して、今日を含む残りの平日でgoalを割り、arrangementを更新する。
@@ -27,16 +28,17 @@ class Task < ApplicationRecord
     target_arrangements = self.arrangements.rest_of_week
     target_num = target_arrangements.size
     target_arrangements.find_each do |arr|
-      arr.goal_per_day = arr.day == Arrangement.days[:fri] ? arr.goal_left / target_num : arr.goal_left / target_num + arr.goal_left % target_num
+      arr.goal_per_day = arr.day_before_type_cast == Arrangement.days[:fri] ? self.goal_left / target_num + self.goal_left % target_num : self.goal_left / target_num
       arr.save!
     end
   # rescue ActiveRecord::RecordInvalid
   #   false
   end
 
+  def goal_left
+    goal - done
+  end
+
   private
 
-  def goal_left
-    self.goal - self.done
-  end
 end
