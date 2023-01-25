@@ -10,15 +10,21 @@ import { DefaultLayout } from './components/templates/DefaultLayout'
 function App() {
   axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL
 
+  const today = new Date().getDay();
+
+  const [day, setDay] = useState(today);
   const [tasks, setTasks] = useState([]);
 
+  // const day_tasks = tasks.filter((task) => task.days === day)
+
   useEffect(() => {
-    const getTrendMovie = async () => {
+    const getTasks = async () => {
       const response = await axios.get(requests.task_index);
       console.log(response.data.tasks);
+      console.log(today);
       setTasks(response.data.tasks);
     }
-    getTrendMovie();
+    getTasks();
   }, [])
 
   return (
