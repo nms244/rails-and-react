@@ -1,26 +1,33 @@
 import './App.css';
-import{useState, useEffect} from "react"
 import axios from "axios"
 import requests from './Request';
-
+import{useState, useEffect} from "react"
+import { NewTask } from './components/pages/NewTask'
+import { DayTasks } from './components/pages/DayTasks'
+import { TaskIndex } from './components/pages/TaskIndex'
+import { DefaultLayout } from './components/templates/DefaultLayout'
 
 function App() {
   axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL
 
-  const [test, setTest] = useState('');
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     const getTrendMovie = async () => {
-      const response = await axios.get(requests.tasks+'1');
-      console.log(response.data);
-      setTest(response.data);
+      const response = await axios.get(requests.task_index);
+      console.log(response.data.tasks);
+      setTasks(response.data.tasks);
     }
     getTrendMovie();
   }, [])
 
   return (
-    <div className="App">
-      {test.controller_action}
+    <div className="App min-h-screen">
+      <DefaultLayout>
+        {/* <DayTasks today_tasks={day_tasks} /> */}
+        <TaskIndex tasks={tasks} />
+        {/* <NewTask /> */}
+      </DefaultLayout>
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 const requests = {
   users: `/users/`,
-  tasks: `/tasks/`,
+  task_index: `/tasks?user_id=1`,
   };
 
   export default requests;
