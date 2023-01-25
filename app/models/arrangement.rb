@@ -11,8 +11,8 @@ class Arrangement < ApplicationRecord
   enum day: { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6}
 
   def self.rest_of_week
-    # today_wday = Time.zone.today.wday
-    today_wday = 3
+    today_wday = Time.zone.today.wday
+    # today_wday = 3 # 水曜日
     rest_of_weekdays = Arrangement.days.filter{|k, v|
       v >= today_wday && k != Arrangement.days[:sat]
     }.values
