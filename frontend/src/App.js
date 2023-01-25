@@ -13,31 +13,35 @@ function App() {
 
   const today = new Date().getDay();
 
-  const [day, setDay] = useState(today);
+  const [wday, setWday] = useState(today);
   const [tasks, setTasks] = useState([]);
   const [arrangements, setArrangements] = useState([]);
 
-  const day_arrangements = arrangements.filter((arr) => WDAYS.arr.day === day)
-  console.log(day);
-  console.log(day_arrangements);
+
+  // console.log('day: '+day);
+
 
   useEffect(() => {
     const getTasksAndArrangements = async () => {
       const task_response = await axios.get(requests.task_index);
       const arrangement_response = await axios.get(requests.arrangement_index);
-      console.log(task_response.data.tasks);
-      console.log(arrangement_response.data.arrangements);
+      // console.log(task_response.data.tasks);
+      // console.log(arrangement_response.data.arrangements);
       setTasks(task_response.data.tasks);
       setArrangements(arrangement_response.data.arrangements);
     }
     getTasksAndArrangements();
   }, [])
 
+  const day_tasks = arrangements.map((arr) => {
+    return {task: arr.task, arrangements: arr.arrangements.filter((a) => WDAYS[a.day] === wday)}
+  }).flat();
+
   return (
     <div className="App min-h-screen">
       <DefaultLayout>
-        {/* <DayTasks today_tasks={day_tasks} /> */}
-        <TaskIndex tasks={tasks} />
+        <DayTasks  day_tasks={day_tasks} />
+        {/* <TaskIndex tasks={tasks} /> */}
         {/* <NewTask /> */}
       </DefaultLayout>
     </div>
