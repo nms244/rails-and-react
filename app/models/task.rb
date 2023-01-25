@@ -19,7 +19,7 @@ class Task < ApplicationRecord
       done_sum = task.arrangements.sum(:done_per_day)
       task.update!(done: done_sum)
     end
-    true
+    task
   end
 
   # あるtaskに対して、今日を含む残りの平日でgoalを割り、arrangementを更新する。
@@ -31,6 +31,7 @@ class Task < ApplicationRecord
       arr.goal_per_day = arr.day_before_type_cast == Arrangement.days[:fri] ? self.goal_left / target_num + self.goal_left % target_num : self.goal_left / target_num
       arr.save!
     end
+    true
   end
 
   def goal_left
