@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      {test.text}
+      {test.controller_action}
     </div>
   );
 }
