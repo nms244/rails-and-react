@@ -4,5 +4,5 @@ class User < ApplicationRecord
     validates :email, uniqueness: true
   end
 
-  has_many :tasks
+  has_many :tasks, dependent: :destroy_async
 end
