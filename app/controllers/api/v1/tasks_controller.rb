@@ -33,19 +33,21 @@ class Api::V1::TasksController < ApplicationController
   def update
     before_task = Task.find(params[:id])
     after_task = Task.find(params[:id])
-    after_task.update!(update_task_params)
-    after_task.rearrange
-    render json: {
-      controller_action: 'tasks#update',
-      before: {
-        task: before_task,
-        arrangement: before_task.arrangements
-      },
-      after: {
-        task: after_task,
-        arrangement: after_task.arrangements
+    ActiveRecord::Base.transaction do
+      after_task.update!(update_task_params)
+      after_task.rearrange
+      render json: {
+        controller_action: 'tasks#update',
+        before: {
+          task: before_task,
+          arrangement: before_task.arrangements
+        },
+        after: {
+          task: after_task,
+          arrangement: after_task.arrangements
+        }
       }
-    }
+    end
     rescue => e
       render json: { controller_action: 'tasks#update', text: e.message }
   end
