@@ -31,8 +31,6 @@ class Task < ApplicationRecord
       arr.goal_per_day = arr.day_before_type_cast == Arrangement.days[:fri] ? self.goal_left / target_num + self.goal_left % target_num : self.goal_left / target_num
       arr.save!
     end
-  # rescue ActiveRecord::RecordInvalid
-  #   false
   end
 
   def goal_left
