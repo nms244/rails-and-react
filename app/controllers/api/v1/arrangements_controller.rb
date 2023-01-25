@@ -1,5 +1,17 @@
 class Api::V1::ArrangementsController < ApplicationController
 
+  def index
+    arrangements = []
+    target_tasks = Task.where(user_id: params[:user_id])
+    target_tasks.find_each do |task|
+      arrangements << {task_id: task.id, arrangements: task.arrangements}
+    end
+    render json: {
+      controller_action: 'arrangements#index',
+      arrangements: arrangements
+    }
+  end
+
   def update
     arrangement = Arrangement.find(params[:id])
     task = arrangement.task
