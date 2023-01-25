@@ -8,7 +8,7 @@ class Task < ApplicationRecord
   validates :description, length: { maximum: 256 }
 
   belongs_to :user
-  has_many :arrangements
+  has_many :arrangements, dependent: :destroy_async
 
   # userインスタンスを引数にし、そのuserのタスクの各曜日のarrangementのdone_per_dayからTask.doneを再計算し更新する。
   # 引数がnil（デフォルト値）の場合は全userのタスクについて上記操作を行う。
