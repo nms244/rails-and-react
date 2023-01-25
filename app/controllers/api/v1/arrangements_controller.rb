@@ -4,7 +4,7 @@ class Api::V1::ArrangementsController < ApplicationController
     arrangements = []
     target_tasks = Task.where(user_id: params[:user_id])
     target_tasks.find_each do |task|
-      arrangements << {task_id: task.id, arrangements: task.arrangements}
+      arrangements << {task: task, arrangements: task.arrangements}
     end
     render json: {
       controller_action: 'arrangements#index',
