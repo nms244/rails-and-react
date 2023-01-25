@@ -13,18 +13,24 @@ class Task < ApplicationRecord
   # userインスタンスを引数にし、そのuserのタスクの各曜日のarrangementのdone_per_dayからTask.doneを再計算し更新する。
   # 引数がnil（デフォルト値）の場合は全userのタスクについて上記操作を行う。
   # TODO: Task.allをself.allにできるか検証
-  def self.reset_done(user: nil)
+  def self.reset_done_of(user: nil)
     target_tasks = user.present? ? user.tasks : Task.all
     target_tasks.find_each do |task|
       done_sum = task.arrangements.sum(:done_per_day)
       task.update!(done: done_sum)
     end
-    task
+    true
+  end
+
+  def reset_done
+    done_sum = self.arrangements.sum(:done_per_day)
+    self.update!(done: done_sum)
   end
 
   # あるtaskに対して、今日を含む残りの平日でgoalを割り、arrangementを更新する。
   # TODO: 例外が出たらrollbackし、falseを返す
   def rearrange
+    self.reset_done
     target_arrangements = self.arrangements.rest_of_week
     target_num = target_arrangements.size
     target_arrangements.find_each do |arr|
