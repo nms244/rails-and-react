@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :users
 
       resources :tasks, only: %i(create index show update destroy)
-      resources :arrangements, only: [:update]
+      resources :arrangements, only: %i(index update)
     end
   end
 
