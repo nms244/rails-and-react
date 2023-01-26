@@ -3,6 +3,7 @@
 const requests = {
   users: `/users/`,
   task_index: `/tasks?user_id=1`,
+  task: `/tasks/`,
   arrangement_index: `/arrangements?user_id=1`,
   };
 
