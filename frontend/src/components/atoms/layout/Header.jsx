@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 // const inactive_wday_link_style = "mr-5 text-center w-10 h-10 text-white p-2 bg-green-500 rounded-full hover:text-gray-700 hover:font-bold transition-colors duration-200";
 // const active_wday_link_style = "mr-5 text-center w-10 h-10 p-2 bg-green-500 rounded-full text-gray-700 font-bold transform -translate-y-1 shadow-lg";
 
+
 export const Header = (props) => {
-  const { WDAYS } = props;
+  const { WDAYS, onClickRearrange } = props;
+
   return (
     <header className="sticky top-0 z-50 bg-white text-gray-600 body-font shadow-lg">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -40,7 +42,8 @@ export const Header = (props) => {
             金
           </Link>
         </Link>
-        <Link to="/new_task"　className="inline-flex items-center bg-green-300 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 mr-2 md:mt-0">新規作成</Link>
+        <Link to="/index" className="inline-flex items-center bg-green-300 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 mr-2 md:mt-0">新規作成</Link>
+        <Link to="/index" onClickRearrange={onClickRearrange}　　className="inline-flex items-center bg-green-300 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 mr-2 md:mt-0">再計算</Link>
         <Link to="/index" className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">
           一覧
         </Link>
