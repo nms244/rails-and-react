@@ -20,7 +20,7 @@ export const TaskShow = (props) => {
             type="text"
             id="task-show-description"
             className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            placeholder='"TOEICの単語帳を1周間で1000語覚える。"'
+            placeholder='"TOEICの単語帳を1週間で1000語覚える。"'
           />
         </div>
         <div className="flex mb-3 text-2xl font-light text-center text-gray-800">
