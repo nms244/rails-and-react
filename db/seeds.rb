@@ -66,10 +66,13 @@ User.find(1).tasks.find_each do |task|
   Arrangement.days[:mon].upto(Arrangement.days[:fri]) do |num|
     Arrangement.create(
       day: num,
-      goal_per_day: num == 5 ? task.goal / 5 : task.goal / 5 + task.goal % 5 ,
-      done_per_day: 0,
+      goal_per_day: num == 5 ? task.goal / 5 + task.goal % 5 : task.goal / 5,
+      done_per_day: num == 4 || num == 5 ? 0 : task.goal / 5,
       task_id: task.id
     )
   end
 end
+
+Arrangement.find(24).update!(done_per_day: 4000)
+
 
