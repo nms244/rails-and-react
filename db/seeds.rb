@@ -73,6 +73,6 @@ User.find(1).tasks.find_each do |task|
   end
 end
 
+Task.find(5).update!(done: 22000)
+
 Arrangement.find(24).update!(done_per_day: 4000)
-
-

@@ -61,6 +61,14 @@ class Api::V1::TasksController < ApplicationController
       render json: { controller_action: 'tasks#destroy', text: e.message }
   end
 
+  def rearrange
+    user = User.find(params[:user_id])
+    user.tasks.find_each do |task|
+      task.rearrange
+    end
+    render json: { controller_action: 'tasks#rearrange', tasks: user.tasks }
+  end
+
   private
 
     def create_task_params

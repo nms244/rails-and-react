@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import requests from '../../Request';
+import { useNavigate } from 'react-router-dom'
 
 export const NewTask = (props) => {
   const { userId, tasks, setTasks } = props
@@ -13,6 +14,7 @@ export const NewTask = (props) => {
   }
 
   const [data, setData] = useState(defaultTaskParams);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -35,6 +37,9 @@ export const NewTask = (props) => {
       console.log(response.status);
       console.log(response.data.task);
     });
+    axios.get(requests.task_index).then((response) => {
+      setTasks(response.data.tasks)
+    })
   };
 
   return (
