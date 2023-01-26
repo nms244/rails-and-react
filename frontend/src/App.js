@@ -9,11 +9,13 @@ import { NoMatch } from "./components/pages/NoMatch";
 import { DefaultLayout } from './components/templates/DefaultLayout'
 import { Routes, Route } from 'react-router-dom'
 
-function App() {
-  const WDAYS = Object.freeze(['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'])
-  axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL
+const WDAYS = Object.freeze(['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']);
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
+const userId = 1;
+const today = new Date().getDay();
 
-  const today = new Date().getDay();
+function App() {
+
 
   const [wday, setWday] = useState(today);
   // const [dayTasks, setDayTasks] = useState([]);
@@ -44,9 +46,9 @@ function App() {
     <div className="App min-h-screen">
       <DefaultLayout WDAYS={WDAYS}>
         <Routes>
-          <Route path="/" element={<DayTasks day_tasks={day_tasks} /> } />
-          <Route path="/index" element={<TaskIndex tasks={tasks} />} />
-          <Route path="/new_task" element={<NewTask />} />
+          <Route path="/" element={<DayTasks userId={userId} day_tasks={day_tasks} /> } />
+          <Route path="/index" element={<TaskIndex userId={userId} tasks={tasks} />} />
+          <Route path="/new_task" element={<NewTask userId={userId} tasks={tasks} setTasks={setTasks} />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </DefaultLayout>
